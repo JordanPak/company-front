@@ -64,3 +64,30 @@ add_theme_support( 'genesis-after-entry-widget-area' );
  * @uses /lib/body-classes.php
  */
 include_once( get_stylesheet_directory() . '/lib/body-classes.php' );
+
+
+
+/**
+ * Unregister Useless WordPress/Genesis Stuff
+ *
+ * @since 1.0.0
+ */
+
+// Remove Edit Link
+add_filter( 'edit_post_link', '__return_false' );
+
+// Unregister Unneeded Layouts and Sidebars
+unregister_sidebar( 'sidebar-alt' );
+genesis_unregister_layout( 'content-sidebar-sidebar' );
+genesis_unregister_layout( 'sidebar-sidebar-content' );
+genesis_unregister_layout( 'sidebar-content-sidebar' );
+
+// Remove Admin Menu Stuff
+function cf_remove_admin_menus(){
+	remove_menu_page( 'edit-comments.php' );
+}
+add_action( 'admin_menu', 'cf_remove_admin_menus' );
+
+// Remove Comments
+remove_action( 'genesis_after_entry', 'genesis_get_comments_template' );
+remove_action( 'genesis_comments', 'genesis_do_comments' );
