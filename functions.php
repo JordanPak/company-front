@@ -106,3 +106,19 @@ add_filter( 'get_the_content_more_link', 'cf_read_more_link' );
 function cf_read_more_link() {
 	return '... <a class="more-link" href="' . get_permalink() . '">Continue Reading</a>';
 }
+
+
+
+add_filter('genesis_footer_creds_text', 'cf_footer_creds');
+/**
+* Customize Footer Credits
+*
+* @since 1.0.0
+*
+* @return string
+*/
+function cf_footer_creds( $creds ) {
+	$creds = '[footer_copyright] <b>Company Front</b> &nbsp;&middot;&nbsp; ';
+	$creds .= ' Designed &amp; Developed by <a href="http://jordanpak.com" target="_BLANK">JordanPak</a>';
+	return $creds;
+}
