@@ -1,0 +1,16 @@
+{
+  "name": "jpgulp",
+  "version": "1.0.0",
+  "description": "Learning how to do Gulp stuff!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jordan Pakrosnis",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0"
+  }
+}
