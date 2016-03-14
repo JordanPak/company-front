@@ -1,5 +1,5 @@
 {
-  "name": "Company Front",
+  "name": "company-front",
   "version": "1.0.0",
   "description": "A basic starter theme for the Genesis Framework with BrowserSync support.",
   "main": "index.js",
