@@ -15,7 +15,7 @@ define( 'TEXT_DOMAIN', 'company-front' );
 
 
 /**
- * Start Genesis engine
+ * Start Genesis Engine
  *
  * @since 1.0.0
  */
@@ -41,3 +41,16 @@ function cf_load_assets() {
 	wp_enqueue_script( 'cf-global', get_stylesheet_directory_uri() . '/assets/js/global.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
 
 } // cf_load_assets()
+
+
+
+/**
+ *
+ * Theme Support
+ *
+ * @since 1.0.0
+ *
+ */
+ add_theme_support( 'genesis-responsive-viewport' );
+ add_theme_support( 'html5',  array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+ add_theme_support( 'genesis-after-entry-widget-area' );
