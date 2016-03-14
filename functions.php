@@ -1,4 +1,11 @@
 <?php
+//=========================================//
+//       COMPANY FRONT STARTER THEME       //
+//=========================================//
+//    Jordan Pakrosnis | JordanPak.com     //
+//=========================================//
+
+
 
 /**
  * Child Theme Constants
@@ -36,6 +43,9 @@ function cf_load_assets() {
 
 	// FontAwesome
 	wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', array(), CHILD_THEME_VERSION );
+
+	// Main Styles
+	wp_enqueue_script( 'cf-styles', get_stylesheet_directory_uri() . '/css/style.css', array(), CHILD_THEME_VERSION );
 
 	// Javascript
 	wp_enqueue_script( 'cf-global', get_stylesheet_directory_uri() . '/assets/js/global.js', array( 'jquery' ), CHILD_THEME_VERSION, true );
