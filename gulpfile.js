@@ -1,34 +1,41 @@
-// DEPENDENCIES
+//======================================//
+//       COMPANY FRONT - GULPFILE       //
+//======================================//
+//   Jordan Pakrosnis | JordanPak.com   //
+//======================================//
+
+
+//-- DEPENDENCIES --//
 var gulp		= require('gulp');
 var sass 		= require('gulp-sass');
 var browserSync	= require('browser-sync').create();
 
 
-// SASS COMPILATION
+//-- TASKS --//
+
+// SASS
 gulp.task('sass', function(){
-	return gulp.src('app/scss/**/*.scss')
+	return gulp.src('assets/scss/**/*.scss')
 		.pipe(sass()) // Using gulp-sass
-		.pipe(gulp.dest('app/css'))
+		.pipe(gulp.dest('css'))
 		.pipe(browserSync.reload({
 			stream: true
 		}))
 });
 
-
 // WATCH
 gulp.task('watch', ['browserSync', 'sass'], function(){
-	gulp.watch('app/scss/**/*.scss', ['sass']);
-	gulp.watch('app/*.html', browserSync.reload);
-	gulp.watch('app/js/**/*.js', browserSync.reload);
+	gulp.watch('assets/scss/**/*.scss', ['sass']);
+	gulp.watch('**/*.php', browserSync.reload);
+	gulp.watch('assets/js/**/*.js', browserSync.reload);
 });
-
 
 // BROWSERSYNC
 gulp.task('browserSync', function() {
 	browserSync.init({
 		open: false,
 		host: "sb1.jp.dev",
-		proxy: "http://sb1.jp.dev/gulp/app",
+		proxy: "http://sb1.jp.dev/company-front",
 		open: false
 	})
 });
