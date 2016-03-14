@@ -51,6 +51,16 @@ function cf_load_assets() {
  * @since 1.0.0
  *
  */
- add_theme_support( 'genesis-responsive-viewport' );
- add_theme_support( 'html5',  array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
- add_theme_support( 'genesis-after-entry-widget-area' );
+add_theme_support( 'genesis-responsive-viewport' );
+add_theme_support( 'html5',  array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+add_theme_support( 'genesis-after-entry-widget-area' );
+
+
+
+/**
+ * Custom Body Classes
+ *
+ * @since 1.0.0
+ * @uses /lib/body-classes.php
+ */
+include_once( get_stylesheet_directory() . '/lib/body-classes.php' );
