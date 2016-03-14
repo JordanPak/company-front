@@ -91,3 +91,18 @@ add_action( 'admin_menu', 'cf_remove_admin_menus' );
 // Remove Comments
 remove_action( 'genesis_after_entry', 'genesis_get_comments_template' );
 remove_action( 'genesis_comments', 'genesis_do_comments' );
+
+
+
+add_filter( 'get_the_content_more_link', 'cf_read_more_link' );
+/**
+* Customize Read More Link for Content Limit in Genesis Settings
+*
+* @author Jordan Pakrosnis
+* @since 1.0.0
+*
+* @return string
+*/
+function cf_read_more_link() {
+	return '... <a class="more-link" href="' . get_permalink() . '">Continue Reading</a>';
+}
