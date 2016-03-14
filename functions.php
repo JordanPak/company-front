@@ -122,3 +122,16 @@ function cf_footer_creds( $creds ) {
 	$creds .= ' Designed &amp; Developed by <a href="http://jordanpak.com" target="_BLANK">JordanPak</a>';
 	return $creds;
 }
+
+
+
+/**
+ * Set the Theme Color Meta for modern browsers
+ *
+ * @author Jordan Pakrosnis
+ * @since 1.0.0
+ */
+add_action( 'genesis_meta', 'cf_meta_theme_color', 13 );
+function cf_meta_theme_color() {
+	echo '<meta name="theme-color" content="#1D1D1D">';
+}
