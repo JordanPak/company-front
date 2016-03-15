@@ -145,3 +145,16 @@ add_action( 'genesis_meta', 'cf_meta_theme_color', 13 );
 function cf_meta_theme_color() {
 	echo '<meta name="theme-color" content="#1D1D1D">';
 }
+
+
+
+/**
+ * Breakpoint Testing
+ *
+ * @author Jordan Pakrosnis
+ * @since 1.0.0
+ */
+function cf_breakpoint_testing() {
+	echo '<div class="breakpoint-test"><span class="name"></span><span class="size"></span></div>';
+}
+add_action( 'genesis_after_footer', 'cf_breakpoint_testing' );

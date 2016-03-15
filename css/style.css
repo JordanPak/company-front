@@ -405,6 +405,89 @@ th {
   box-shadow: 0;
   outline: rgba(0, 0, 0, 0.2) solid 2px; }
 
+.breakpoint-test {
+  display: none;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  min-width: 200px;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 0 0 10px 0;
+  background: white !important;
+  color: black;
+  font-family: sans-serif;
+  font-size: 14px;
+  box-shadow: 0 0 15px black; }
+  .breakpoint-test .name::after {
+    display: inline-block;
+    font-weight: bold; }
+    @media (min-width: 0px) {
+      .breakpoint-test .name::after {
+        content: "zero"; } }
+    @media (min-width: 380px) {
+      .breakpoint-test .name::after {
+        content: "xsmall"; } }
+    @media (min-width: 460px) {
+      .breakpoint-test .name::after {
+        content: "small"; } }
+    @media (min-width: 640px) {
+      .breakpoint-test .name::after {
+        content: "small-medium"; } }
+    @media (min-width: 768px) {
+      .breakpoint-test .name::after {
+        content: "medium"; } }
+    @media (min-width: 960px) {
+      .breakpoint-test .name::after {
+        content: "medium-large"; } }
+    @media (min-width: 1024px) {
+      .breakpoint-test .name::after {
+        content: "large"; } }
+    @media (min-width: 1200px) {
+      .breakpoint-test .name::after {
+        content: "large-xlarge"; } }
+    @media (min-width: 1280px) {
+      .breakpoint-test .name::after {
+        content: "xlarge"; } }
+    @media (min-width: 1440px) {
+      .breakpoint-test .name::after {
+        content: "xxlarge"; } }
+  .breakpoint-test .size::after {
+    display: inline-block;
+    margin-left: 10px; }
+    @media (min-width: 0px) {
+      .breakpoint-test .size::after {
+        content: "(0px)"; } }
+    @media (min-width: 380px) {
+      .breakpoint-test .size::after {
+        content: "(380px)"; } }
+    @media (min-width: 460px) {
+      .breakpoint-test .size::after {
+        content: "(460px)"; } }
+    @media (min-width: 640px) {
+      .breakpoint-test .size::after {
+        content: "(640px)"; } }
+    @media (min-width: 768px) {
+      .breakpoint-test .size::after {
+        content: "(768px)"; } }
+    @media (min-width: 960px) {
+      .breakpoint-test .size::after {
+        content: "(960px)"; } }
+    @media (min-width: 1024px) {
+      .breakpoint-test .size::after {
+        content: "(1024px)"; } }
+    @media (min-width: 1200px) {
+      .breakpoint-test .size::after {
+        content: "(1200px)"; } }
+    @media (min-width: 1280px) {
+      .breakpoint-test .size::after {
+        content: "(1280px)"; } }
+    @media (min-width: 1440px) {
+      .breakpoint-test .size::after {
+        content: "(1440px)"; } }
+
 input,
 select,
 textarea {
