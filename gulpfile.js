@@ -8,7 +8,6 @@
 //-- DEPENDENCIES --//
 var gulp		= require('gulp');
 var sass 		= require('gulp-sass');
-// var plumber		= require('gulp-plumber');
 var browserSync	= require('browser-sync').create();
 
 
