@@ -8,6 +8,7 @@
 //-- DEPENDENCIES --//
 var gulp		= require('gulp');
 var sass 		= require('gulp-sass');
+// var plumber		= require('gulp-plumber');
 var browserSync	= require('browser-sync').create();
 
 
@@ -16,7 +17,7 @@ var browserSync	= require('browser-sync').create();
 // SASS
 gulp.task('sass', function(){
 	return gulp.src('assets/scss/**/*.scss')
-		.pipe(sass()) // Using gulp-sass
+		.pipe(sass().on('error', sass.logError)) // Using gulp-sass
 		.pipe(gulp.dest('css'))
 		.pipe(browserSync.reload({
 			stream: true

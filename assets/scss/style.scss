@@ -11,8 +11,9 @@
 // Vars & Mixins
 @import "variables";
 @import "mixins";
+@import "breakpoints";
 
-//
+// General
 @import "typography";
 @import "structure";
 @import "forms";
