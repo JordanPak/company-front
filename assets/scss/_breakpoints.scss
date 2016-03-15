@@ -1,0 +1,123 @@
+//===============================//
+//  COMPANY FRONT | BREAKPOINTS  //
+//===============================//
+
+
+//===============//
+//  DEFINITIONS  //
+//===============//
+$breakpoints: (
+	'zero'			: 0px,
+	'xsmall'		: 380px,
+	'small'			: 460px,
+	'small-medium'	: 640px,
+	'medium'		: 768px,
+	'medium-large'	: 960px,
+	'large'			: 1024px,
+	'large-xlarge'	: 1200px,
+	'xlarge'		: 1280px,
+	'xxlarge'		: 1440px,
+);
+
+
+
+//======================//
+//  BREAKPOINT HANDLER  //
+//======================//
+@mixin breakpoint($breakpoint) {
+
+	$value: map-get($breakpoints, $breakpoint);
+
+	@if $value != null {
+		@media (min-width: $value) {
+			@content;
+		}
+	}
+
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+			+ "Please make sure it is defined in `$breakpoints` map.";
+	}
+
+} // breakpoint()
+
+
+
+//======================//
+//  BREAKPOINT TESTING  //
+//======================//
+@mixin breakpoint-test( $container: false, $bg-color: white, $bg-opacity: 0.2 ) {
+
+
+	@if variable-exists( breakpoints ) {
+
+		@if $container == false {
+
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 9999;
+			min-width: 200px;
+			padding: 10px 15px;
+			text-align: center;
+			border-radius: 0 0 10px 0;
+
+			background: white !important;
+			color: black;
+			font-family: sans-serif;
+			font-size: 14px;
+			box-shadow: 0 0 15px rgba(0,0,0,1);
+
+			.name::after {
+				display: inline-block;
+				font-weight: bold;
+
+				@each $breakpoint, $size in $breakpoints {
+					@include breakpoint( $breakpoint ) {
+						content: '' + $breakpoint;
+					}
+				} // @each
+			} // .name::after
+
+			.size::after {
+				display: inline-block;
+				margin-left: 10px;
+
+				@each $breakpoint, $size in $breakpoints {
+					@include breakpoint( $breakpoint ) {
+						content: '(' + $size + ')';
+					}
+				} // @each
+			} // .size::after
+
+		} // if !$container
+
+
+		// $container
+		@else {
+			background: rgba( $bg-color, $bg-opacity );
+		}
+
+
+	} // if $breakpoints map found.
+
+
+	// Breakpoints Not Found
+	@else {
+		@warn '$breakpoints map not found. Please check your Foundation _settings.scss.';
+	}
+
+} // breakpoint-test()
+
+
+
+//===================//
+//  TESTING ELEMENT  //
+//===================//-------//
+//  Hooked in before </body>  //
+//----------------------------//
+.breakpoint-test {
+	display: none;
+	@include breakpoint-test();
+}
