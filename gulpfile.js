@@ -83,17 +83,6 @@ gulp.task('watch', function() {
 
 });
 
-// // Watch files for changes (without Browser-Sync)
-// gulp.task('watch', function() {
-
-//   // Watch .scss files
-//   gulp.watch('./assets/scss/**/*.scss', ['styles']);
-
-//   // Watch site-js files
-//   gulp.watch('./assets/js/scripts/*.js', ['site-js']);
-
-// }); 
-
 // Run styles and site-js
 gulp.task('default', function() {
   gulp.start('styles', 'site-js' );
