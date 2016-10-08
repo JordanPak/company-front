@@ -64,6 +64,7 @@ gulp.task('site-js', function() {
 
 // Browser-Sync watch files and inject changes
 gulp.task('watch', function() {
+
     // Watch files
     var files = [
     	'./assets/css/*.css', 
@@ -80,6 +81,7 @@ gulp.task('watch', function() {
     
     gulp.watch('./assets/scss/**/*.scss', ['styles']);
     gulp.watch('./assets/js/scripts/*.js', ['site-js']).on('change', browserSync.reload);
+    gulp.watch('**/*.php').on('change', browserSync.reload);
 
 });
 
