@@ -63,7 +63,7 @@ gulp.task('site-js', function() {
 
 
 // Browser-Sync watch files and inject changes
-gulp.task('browsersync', function() {
+gulp.task('watch', function() {
     // Watch files
     var files = [
     	'./assets/css/*.css', 
@@ -83,16 +83,16 @@ gulp.task('browsersync', function() {
 
 });
 
-// Watch files for changes (without Browser-Sync)
-gulp.task('watch', function() {
+// // Watch files for changes (without Browser-Sync)
+// gulp.task('watch', function() {
 
-  // Watch .scss files
-  gulp.watch('./assets/scss/**/*.scss', ['styles']);
+//   // Watch .scss files
+//   gulp.watch('./assets/scss/**/*.scss', ['styles']);
 
-  // Watch site-js files
-  gulp.watch('./assets/js/scripts/*.js', ['site-js']);
+//   // Watch site-js files
+//   gulp.watch('./assets/js/scripts/*.js', ['site-js']);
 
-}); 
+// }); 
 
 // Run styles and site-js
 gulp.task('default', function() {
