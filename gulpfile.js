@@ -73,8 +73,9 @@ gulp.task('browsersync', function() {
     ];
 
     browserSync.init(files, {
-	    // Replace with URL of your local site
-	    proxy: "http://localhost/",
+		host: "sb1.jp.dev",
+		proxy: "http://sb1.jp.dev/company-front",
+		open: false
     });
     
     gulp.watch('./assets/scss/**/*.scss', ['styles']);
@@ -103,37 +104,37 @@ gulp.task('default', function() {
 
 
 
-//-- DEPENDENCIES --//
-var gulp		= require('gulp');
-var sass 		= require('gulp-sass');
-var browserSync	= require('browser-sync').create();
+// //-- DEPENDENCIES --//
+// var gulp		= require('gulp');
+// var sass 		= require('gulp-sass');
+// var browserSync	= require('browser-sync').create();
 
 
-//-- TASKS --//
+// //-- TASKS --//
 
-// SASS
-gulp.task('sass', function(){
-	return gulp.src('assets/scss/**/*.scss')
-		.pipe(sass().on('error', sass.logError)) // Using gulp-sass
-		.pipe(gulp.dest('assets/css'))
-		.pipe(browserSync.reload({
-			stream: true
-		}))
-});
+// // SASS
+// gulp.task('sass', function(){
+// 	return gulp.src('assets/scss/**/*.scss')
+// 		.pipe(sass().on('error', sass.logError)) // Using gulp-sass
+// 		.pipe(gulp.dest('assets/css'))
+// 		.pipe(browserSync.reload({
+// 			stream: true
+// 		}))
+// });
 
-// WATCH
-gulp.task('watch', ['browserSync', 'sass'], function(){
-	gulp.watch('assets/scss/**/*.scss', ['sass']);
-	gulp.watch('**/*.php', browserSync.reload);
-	gulp.watch('assets/js/**/*.js', browserSync.reload);
-});
+// // WATCH
+// gulp.task('watch', ['browserSync', 'sass'], function(){
+// 	gulp.watch('assets/scss/**/*.scss', ['sass']);
+// 	gulp.watch('**/*.php', browserSync.reload);
+// 	gulp.watch('assets/js/**/*.js', browserSync.reload);
+// });
 
-// BROWSERSYNC
-gulp.task('browserSync', function() {
-	browserSync.init({
-		open: false,
-		host: "sb1.jp.dev",
-		proxy: "http://sb1.jp.dev/company-front",
-		open: false
-	})
-});
+// // BROWSERSYNC
+// gulp.task('browserSync', function() {
+// 	browserSync.init({
+// 		open: false,
+// 		host: "sb1.jp.dev",
+// 		proxy: "http://sb1.jp.dev/company-front",
+// 		open: false
+// 	})
+// });
