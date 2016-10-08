@@ -4,38 +4,88 @@
 //   Jordan Pakrosnis | JordanPak.com   //
 //======================================//
 
+// Grab our gulp packages
+var gulp  = require('gulp'),
+    gutil = require('gulp-util'),
+    sass = require('gulp-sass'),
+    cssnano = require('gulp-cssnano'),
+    autoprefixer = require('gulp-autoprefixer'),
+    sourcemaps = require('gulp-sourcemaps'),
+    jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    rename = require('gulp-rename'),
+    plumber = require('gulp-plumber'),
+    bower = require('gulp-bower'),
+    babel = require('gulp-babel'),
+    browserSync = require('browser-sync').create();
 
-//-- DEPENDENCIES --//
-var gulp		= require('gulp');
-var sass 		= require('gulp-sass');
-var browserSync	= require('browser-sync').create();
-
-
-//-- TASKS --//
-
-// SASS
-gulp.task('sass', function(){
-	return gulp.src('assets/scss/**/*.scss')
-		.pipe(sass().on('error', sass.logError)) // Using gulp-sass
-		.pipe(gulp.dest('css'))
-		.pipe(browserSync.reload({
-			stream: true
-		}))
+// Compile Sass, Autoprefix and minify
+gulp.task('styles', function() {
+    return gulp.src('./assets/scss/**/*.scss')
+        .pipe(plumber(function(error) {
+            gutil.log(gutil.colors.red(error.message));
+            this.emit('end');
+        }))
+        .pipe(sourcemaps.init()) // Start Sourcemaps
+        .pipe(sass())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+        .pipe(gulp.dest('./assets/css/'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(cssnano())
+        .pipe(sourcemaps.write('.')) // Creates sourcemaps for minified styles
+        .pipe(gulp.dest('./assets/css/'))
 });
+    
+// JSHint, concat, and minify JavaScript
+gulp.task('site-js', function() {
+  return gulp.src([	
+	  
+           // Grab your custom scripts
+  		  './assets/js/scripts/*.js'
+  		  
+  ])
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(concat('scripts.js'))
+    .pipe(gulp.dest('./assets/js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.')) // Creates sourcemap for minified JS
+    .pipe(gulp.dest('./assets/js'))
+});    
 
-// WATCH
-gulp.task('watch', ['browserSync', 'sass'], function(){
-	gulp.watch('assets/scss/**/*.scss', ['sass']);
-	gulp.watch('**/*.php', browserSync.reload);
-	gulp.watch('assets/js/**/*.js', browserSync.reload);
-});
 
-// BROWSERSYNC
-gulp.task('browserSync', function() {
-	browserSync.init({
-		open: false,
+// Browser-Sync watch files and inject changes
+gulp.task('watch', function() {
+
+    // Watch files
+    var files = [
+    	'./assets/css/*.css', 
+    	'./assets/js/*.js',
+    	'**/*.php',
+    	'assets/images/**/*.{png,jpg,gif,svg,webp}',
+    ];
+
+    browserSync.init(files, {
 		host: "sb1.jp.dev",
 		proxy: "http://sb1.jp.dev/company-front",
 		open: false
-	})
+    });
+    
+    gulp.watch('./assets/scss/**/*.scss', ['styles']);
+    gulp.watch('./assets/js/scripts/*.js', ['site-js']).on('change', browserSync.reload);
+    gulp.watch('**/*.php').on('change', browserSync.reload);
+
+});
+
+// Run styles and site-js
+gulp.task('default', function() {
+  gulp.start('styles', 'site-js' );
 });
