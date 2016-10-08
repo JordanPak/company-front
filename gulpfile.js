@@ -17,7 +17,7 @@ var browserSync	= require('browser-sync').create();
 gulp.task('sass', function(){
 	return gulp.src('assets/scss/**/*.scss')
 		.pipe(sass().on('error', sass.logError)) // Using gulp-sass
-		.pipe(gulp.dest('css'))
+		.pipe(gulp.dest('assets/css'))
 		.pipe(browserSync.reload({
 			stream: true
 		}))
